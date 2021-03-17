@@ -1,6 +1,13 @@
 import React from "react";
 import { useNavigation } from "../../navigation";
-import { Favorite, Class, Meditation, Course, Article } from "./types";
+import {
+  Favorite,
+  Class,
+  Meditation,
+  Course,
+  Article,
+  isArticle, isClass, isCourse, isMeditation
+} from './types'
 import { FavoritesSection } from "./FavoritesSection";
 
 type FavoritesByType = {
@@ -12,15 +19,12 @@ type FavoritesByType = {
 
 const getFavoritesByType = (favorites: Favorite[]) => {
   return favorites.reduce(
-    (acc, d) => {
-      // @ts-ignore TSFixMe
-      if (d.content.__typename === "Class") acc.classes.push(d);
-      // @ts-ignore TSFixMe
-      if (d.content.__typename === "Course") acc.courses.push(d);
-      // @ts-ignore TSFixMe
-      if (d.content.__typename === "Meditation") acc.meditations.push(d);
-      // @ts-ignore TSFixMe
-      if (d.content.__typename === "Article") acc.articles.push(d);
+    (acc:FavoritesByType , d) => {
+      if (isClass(d)) acc.classes.push(d);
+      if (isCourse(d)) acc.courses.push(d);
+      if (isMeditation(d)) acc.meditations.push(d);
+      if (isArticle(d)) acc.articles.push(d);
+
       return acc;
     },
     { classes: [], meditations: [], articles: [], courses: [] }

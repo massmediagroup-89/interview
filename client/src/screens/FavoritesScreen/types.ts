@@ -21,3 +21,19 @@ export type Favorite<C extends FavoriteContent = FavoriteContent> = {
   };
   content: C;
 };
+
+export function isClass(favorite: Favorite): favorite is Favorite<Class> {
+  return favorite.content.__typename === 'Class'
+}
+
+export function isCourse(favorite: Favorite): favorite is Favorite<Course> {
+  return favorite.content.__typename === 'Course'
+}
+
+export function isMeditation(favorite: Favorite): favorite is Favorite<Meditation> {
+  return favorite.content.__typename === 'Meditation'
+}
+
+export function isArticle(favorite: Favorite): favorite is Favorite<Article> {
+  return favorite.content.__typename === 'Article'
+}
