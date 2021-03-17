@@ -1,4 +1,5 @@
-import { Dictionary } from './common/dictionary'
+import { Dictionary } from './dictionary'
+
 
 export type Route = {
   route: string

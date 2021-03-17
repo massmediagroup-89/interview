@@ -12,8 +12,7 @@ import {
 } from "../screens";
 import { ErrorMessage } from "../components";
 import React, { createContext, useState } from 'react'
-import { Route } from '../types'
-import { Dictionary } from '../types/common/dictionary'
+import { Route, Dictionary } from '../types/common'
 
 const routes: Dictionary<React.FC<any>> = {
   HomeScreen,
