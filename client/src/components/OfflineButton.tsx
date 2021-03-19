@@ -23,11 +23,11 @@ export const OfflineButton: React.FC = () => {
   const onClick = () => {
     const newIsOffline = !isOffline;
     setIsOffline(newIsOffline);
-    if (newIsOffline) {
-      navigate({ route: "DownloadsScreen", params: {} });
-    } else {
-      navigate({ route: "HomeScreen", params: {} });
-    }
+    // if (newIsOffline) {
+    //   navigate({ route: "DownloadsScreen", params: {} });
+    // } else {
+    //   navigate({ route: "HomeScreen", params: {} });
+    // }
   };
 
   return (

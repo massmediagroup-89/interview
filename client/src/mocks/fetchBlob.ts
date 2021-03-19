@@ -76,6 +76,7 @@ export const fetchBlob = (
     recursiveDownloadProgress();
   });
 
+
   const onProgress: OnProgress = cb => {
     const key = listenerKey;
     listenerKey += 1;

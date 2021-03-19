@@ -7,6 +7,7 @@ import {
   MeditationScreenQueryVariables
 } from "../graphql";
 import { ErrorMessage, Loading, CenterContents } from "../components";
+import { DownloadButton } from '../components/DownloadButton'
 
 interface Props {
   id: string;
@@ -28,6 +29,8 @@ export const MeditationScreen: React.FC<Props> = ({ id }) => {
 
   return (
     <>
+      {/*<DownloadButton contentPiece={meditation} contentId={id} />*/}
+
       <CenterContents>
         <h1 style={{ textAlign: "center" }}>Meditation</h1>
         <h4 style={{ textAlign: "center" }}>{meditation.title}</h4>

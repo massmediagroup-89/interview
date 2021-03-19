@@ -7,6 +7,7 @@ import {
   ArticleScreenQueryVariables
 } from "../graphql";
 import { ErrorMessage, Loading, CenterContents } from "../components";
+import { DownloadButton } from '../components/DownloadButton'
 
 interface Props {
   id: string;
@@ -28,6 +29,8 @@ export const ArticleScreen: React.FC<Props> = ({ id }) => {
 
   return (
     <>
+      {/*<DownloadButton contentPiece={article} contentId={id} />*/}
+
       <CenterContents>
         <h1 style={{ textAlign: "center" }}>Article</h1>
         <h4 style={{ textAlign: "center" }}>{article.title}</h4>

@@ -7,6 +7,7 @@ import {
   ClassScreenQueryVariables
 } from "../graphql";
 import { ErrorMessage, Loading, CenterContents } from "../components";
+import { DownloadButton } from '../components/DownloadButton'
 
 interface Props {
   id: string;
@@ -28,6 +29,8 @@ export const ClassScreen: React.FC<Props> = ({ id }) => {
 
   return (
     <>
+      {/*<DownloadButton contentPiece={class_} contentId={id} />*/}
+
       <CenterContents>
         <h1 style={{ margin: 0 }}>Class</h1>
         <h4>{class_.title}</h4>
