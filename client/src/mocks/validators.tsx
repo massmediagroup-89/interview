@@ -40,7 +40,7 @@ const Validator: React.FC<{
       <span style={{ paddingRight: 5 }}>{error ? "❌" : "✅"}</span>
       <span>{msg}</span>
 
-      {!error && (displaySrc.endsWith(".jpg") || displaySrc.endsWith(".png")) && (
+      {!error && (displaySrc.endsWith(".jpg") || displaySrc.endsWith(".png") || displaySrc.startsWith("data:image/")) && (
         <div style={{ display: "flex", marginLeft: 50 }}>
           <div>
             <img src={displaySrc} style={{ height: "100px" }} />
@@ -75,6 +75,7 @@ const isHttpResource = (src: string) => {
   if (!src.startsWith("http")) throw new Error(msg);
 };
 const isNotHttpResource = (src: string) => {
+  console.log('msg', src)
   const msg = `This HTTP resource is not available offline: ${src}`;
   if (src.startsWith("http")) throw new Error(msg);
 };
