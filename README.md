@@ -53,7 +53,7 @@ Before you begin your task, your team members need some help with a few TypeScri
 ##### Response to the Junior Dev
 
 * "We should not use `as` here because... **@TODO_WRITE_YOUR_ANSWER_HERE**"
-
+*  In this case, we should use type guard not "as" because we should have known exact type, after shaking type we exactly know that is the right type
 ## Your Tasks (2): New Download Feature
 The team is grateful for your help resolving those TypeScript issues! Now, you sit down to read your requirements for the new Downloads feature you've been tasked with.
 
@@ -72,3 +72,15 @@ You know that currently users can see content recommended to them on the `HomeSc
 ##### Implementation Plan
 
 **@TODO_WRITE_YOUR_ANSWER_HERE**
+- Create component "download button" with loding element
+- Create service for manage data(save, read, and other helpful things)
+- Create logic for transform file to base64 from url.
+- Determine structure data for saving on local storage
+- Determine fields that we need to save.
+- Display saved data on the download screen
+- Add navigate to saved data
+
+For save data need to install chrome plugin(Allow cors) it resolve a problem with CORS. If you don't install extension you can not save media.
+
+In our solution, we save only some images and display them. We don't convert video/pdf and save because local storage doesn't have enough memory.
+The best solution save the file to local cache or other.
