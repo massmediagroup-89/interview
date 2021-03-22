@@ -29,7 +29,6 @@ const Validator: React.FC<{
         setDisplaySrc(src);
       }
     } catch (e) {
-      console.error(e, src);
       setError(e);
       setDisplaySrc("");
     }
@@ -75,7 +74,6 @@ const isHttpResource = (src: string) => {
   if (!src.startsWith("http")) throw new Error(msg);
 };
 const isNotHttpResource = (src: string) => {
-  console.log('msg', src)
   const msg = `This HTTP resource is not available offline: ${src}`;
   if (src.startsWith("http")) throw new Error(msg);
 };

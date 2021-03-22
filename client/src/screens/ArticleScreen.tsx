@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useContext, useEffect, useState } from 'react'
 import { useQuery } from "@apollo/client";
-import { ContentImage, TeacherImage, Media } from "../mocks";
+import { ContentImage, TeacherImage, Media, fs } from '../mocks'
 import {
   articleScreenQuery,
   ArticleScreenQuery,
@@ -8,6 +8,8 @@ import {
 } from "../graphql";
 import { ErrorMessage, Loading, CenterContents } from "../components";
 import { DownloadButton } from '../components/DownloadButton'
+import { AppContext } from '../App'
+import { Article } from '../types/contentItem'
 
 interface Props {
   id: string;
@@ -21,7 +23,22 @@ export const ArticleScreen: React.FC<Props> = ({ id }) => {
     variables: { id }
   });
 
-  const article = data?.Article;
+  const { isOffline } = useContext(AppContext);
+  const [article, setArticle] = useState<Article | undefined>(undefined)
+
+  useEffect(() => {
+    (async () => {
+      if (!data || !data.Article) return;
+
+      const response = await fs.readFile(data.Article.__typename)
+      const meditationData  = response
+        ? (JSON.parse(response) as Article[]).find(item => item.id === id)
+        : undefined
+
+      if (isOffline && meditationData) setArticle(meditationData)
+      if (!isOffline) setArticle(data.Article)
+    })()
+  }, [isOffline, data, id])
 
   if (loading) return <Loading />;
   if (error) return <ErrorMessage msg={JSON.stringify(error)} />;
@@ -29,7 +46,7 @@ export const ArticleScreen: React.FC<Props> = ({ id }) => {
 
   return (
     <>
-      {/*<DownloadButton contentPiece={article} contentId={id} />*/}
+      <DownloadButton content={article} />
 
       <CenterContents>
         <h1 style={{ textAlign: "center" }}>Article</h1>
@@ -37,7 +54,8 @@ export const ArticleScreen: React.FC<Props> = ({ id }) => {
       </CenterContents>
       <ContentImage src={article.no_text_image.processed_url} />
       <TeacherImage src={article.teacher.image.processed_url} />
-      {article.media_source && <Media src={article.media_source} />}
+      {!isOffline && article.media_source && <Media src={article.media_source} />}
+      {isOffline && article.media_download && <Media src={article.media_download} />}
     </>
   );
 };
