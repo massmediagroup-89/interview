@@ -25,7 +25,7 @@ export const ChapterList: React.FC<Props> = ({ chapters }) => {
                   {module.display_name}
                   {(module.module_type === "AUDIO" ||
                     module.module_type === "VIDEO") && (
-                    <Media src={isOffline ? module.media_download || "" : module.media_source || ""} />
+                    <Media src={(isOffline ? module.media_download : module.media_source) || ""} />
                   )}
                   {module.module_type === "PDF" && (
                     <PDF src={module.file || ""} />

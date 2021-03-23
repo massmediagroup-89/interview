@@ -158,8 +158,7 @@ export const DownloadButton: React.FC<Props> = ({content}) => {
     if ('chapters' in data && data.chapters) {
       (data.chapters || []).filter(isNotNull).forEach((chapter, idx) => {
         chapter.modules.forEach(module => {
-          if(module.module_type === "AUDIO" ||
-            module.module_type === "VIDEO") {
+          if(module.module_type === "AUDIO" || module.module_type === "VIDEO") {
 
             if (module.media_download) {
               const replacedUrl = replaceHttpToSpace(module.media_download);
@@ -171,13 +170,11 @@ export const DownloadButton: React.FC<Props> = ({content}) => {
             return
           }
 
-          if(module.module_type === "PDF") {
-            if (module.file) {
-              const replacedUrl = replaceHttpsPrefixToFile(module.file);
+          if(module.module_type === "PDF" && module.file) {
+            const replacedUrl = replaceHttpsPrefixToFile(module.file);
 
-              mediaArray.push({path: replacedUrl, value: module.file})
-              module.file = replaceHttpsPrefixToFile(module.file)
-            }
+            mediaArray.push({path: replacedUrl, value: module.file})
+            module.file = replaceHttpsPrefixToFile(module.file)
           }
         })
       })
